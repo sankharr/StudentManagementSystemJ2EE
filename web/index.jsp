@@ -19,8 +19,7 @@
         <div class="row">
             
                                                                 <!--form-->
-            <div class="col-sm-4">
-                
+            <div class="col-sm-4">                
                 <form class="card" method="post" action="#">
                     <div align="left">
                         <label class="form-label">Student Name</label>
@@ -39,11 +38,32 @@
                         <input type="submit" id="submit" value="submit" name="submit" class="btn btn-info">
                         <input type="reset" id="reset" value="reset" name="reset" class="btn btn-warning">
                     </div>
-                </form>
-                
+                </form>                
             </div>
+            
+                                                                
             <div class="col-sm-8">
-                
+                <div class="panel-body">
+                    <table id="tbl-student" class="table table-responsive table-bordered" cellpadding="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Course</th>
+                                <th>Fee</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
