@@ -4,14 +4,31 @@
     Author     : Sankha Rathnayake
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+<%@page import="java.sql.*" %>
+
+<%
+   
+
+        String id = request.getParameter("id");
+        String name = request.getParameter("sname");
+        String course = request.getParameter("course");
+        String fee = request.getParameter("fee");
+
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs;
+
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/schooll", "root", "");
+        pst = con.prepareStatement("delete from records where id = ?");     
+        pst.setString(1, id);       
+        pst.executeUpdate();
+
+%>
+
+<script>
+    alert("Record Deleted");
+</script>
+
+
