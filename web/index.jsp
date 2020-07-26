@@ -8,31 +8,30 @@
 <%@page import="java.sql.*" %>
 
 <%
-    if(request.getParameter("submit")!=null){
-        
+    if (request.getParameter("submit") != null) {
+
         String name = request.getParameter("sname");
         String course = request.getParameter("course");
         String fee = request.getParameter("fee");
-        
+
         Connection con;
         PreparedStatement pst;
         ResultSet rs;
-        
+
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost/schooll","root","");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/schooll", "root", "");
         pst = con.prepareStatement("insert into records(stname,course,fee)values(?,?,?)");
         pst.setString(1, name);
         pst.setString(2, course);
         pst.setString(3, fee);
         pst.executeUpdate();
-        
-        %>
-        
-        <script>
-            alert("Record added");
-        </script>
-        <%
-    }
+
+%>
+
+<script>
+    alert("Record added");
+</script>
+<%            }
 %>
 
 <!DOCTYPE html>
@@ -45,10 +44,10 @@
     </head>
     <body>
         <h1>Student Registration System CRUD using JSP</h1>
-         <br>
+        <br>
         <div class="row">
-            
-                                                                <!--form-->
+
+            <!--form-->
             <div class="col-sm-4">                
                 <form class="card" method="post" action="#">
                     <div align="left">
@@ -70,8 +69,8 @@
                     </div>
                 </form>                
             </div>
-            
-                                                                
+
+
             <div class="col-sm-8">
                 <div class="panel-body">
                     <table id="tbl-student" class="table table-responsive table-bordered" cellpadding="0" width="100%">
@@ -83,14 +82,36 @@
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
-                            
+
+                            <%
+                                Connection con;
+                                PreparedStatement pst;
+                                ResultSet rs;
+
+                                Class.forName("com.mysql.jdbc.Driver");
+                                con = DriverManager.getConnection("jdbc:mysql://localhost/schooll", "root", "");
+                                
+                                String query = "select * from records";
+                                Statement st = con.createStatement();
+                                
+                                rs = st.executeQuery(query);
+                                while(rs.next()){
+                                
+                                    String id = rs.getString("id");                                    
+                               
+                            %>
+
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><%=rs.getString("stname") %></td>
+                                <td><%=rs.getString("course") %></td>
+                                <td><%=rs.getString("fee") %></td>
+                                <td>Edit</td>
+                                <td>Delete</td>
                             </tr>
+                            
+                            <%
+                                }
+                            %>
                         </thead>
                     </table>
                 </div>
