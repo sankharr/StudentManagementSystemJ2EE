@@ -49,7 +49,7 @@
 
             <!--form-->
             <div class="col-sm-4">                
-                <form class="card" method="post" action="#">
+                <form class="card" method="POST" action="#">
                     <div align="left">
                         <label class="form-label">Student Name</label>
                         <input type="text" class="form-control" placeholder="Student Name" name="sname" id="sname" required>                        
@@ -105,8 +105,8 @@
                                 <td><%=rs.getString("stname") %></td>
                                 <td><%=rs.getString("course") %></td>
                                 <td><%=rs.getString("fee") %></td>
-                                <td>Edit</td>
-                                <td>Delete</td>
+                                <td><a href="update.jsp?id=<%=id%>">Edit</a></td>
+                                <td><a href="delete.jsp?id=<%=id%>">Delete</a></td>
                             </tr>
                             
                             <%
