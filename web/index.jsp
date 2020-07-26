@@ -5,6 +5,36 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+
+<%
+    if(request.getParameter("submit")!=null){
+        
+        String name = request.getParameter("sname");
+        String course = request.getParameter("course");
+        String fee = request.getParameter("fee");
+        
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs;
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/schooll","root","");
+        pst = con.prepareStatement("insert into records(stname,course,fee)values(?,?,?)");
+        pst.setString(1, name);
+        pst.setString(2, course);
+        pst.setString(3, fee);
+        pst.executeUpdate();
+        
+        %>
+        
+        <script>
+            alert("Record added");
+        </script>
+        <%
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
